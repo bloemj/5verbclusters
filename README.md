@@ -5,6 +5,8 @@ De volledige queries zijn te lang om direct in PaQu te plakken, dus daarom hiero
 
 [Download hier de macro's voor vijfledige werkwoordsclusters](5v-clustermacros.txt)
 
+[Overzicht van alle gevonden vijfledige werkwoordsclusters, met annotaties](dact-allcorrect-syntactic.csv)
+
 ## Syntactisch zoeken
 
 ### 5-1-2-3-4-clusters
