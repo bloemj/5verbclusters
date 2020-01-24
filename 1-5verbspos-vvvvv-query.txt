@@ -1,0 +1,1 @@
+//node[(@pos="verb" and (number(@end)=//node[@pos="verb" and (number(@end)=//node[@pos="verb" and (number(@end)=//node[@pos="verb" and (number(@end)=//node[@pos="verb"]/number(@begin))]/number(@begin))]/number(@begin))]/number(@begin)))]

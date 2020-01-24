@@ -1,0 +1,134 @@
+#Macros voor het identificeren van vijfledige werkwoordsclusters (voornamelijk getest op het Wiki-corpus)
+
+#Basiselementen
+b = """number(@begin)"""
+e = """number(@end)"""
+i = """number(@index)"""
+id = """number(@id)"""
+
+#Dit was een voorbeeld uit de dact-documentatie.
+verbcluster = """( @rel="vc" and 
+                   (@cat="ti" or @cat="inf" or @cat="ppart") and 
+                   node/%b% < ../node[@rel="hd" and @pos="verb"]/%b%
+                 )"""
+
+#Definitie van auxiliary verb (hoofdzin of bijzin)
+#Een verb-node met een aux-root, dat onder een soort van subclause hangt, of onder een vc van de hoofdzin.
+aux = """( @pos="verb" and (@root="word" or @root="heb" or @root="ben") and (parent::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi")] or parent::node[@rel="vc" and parent::node[(@cat="smain" or @cat="sv1")]] or parent::node[@cat="inf" and parent::node[@cat="ti"]])
+         )"""
+#Dit definieert een auxiliary die niet-hoofd van een cluster is
+auxmid = """( @pos="verb" and (@root="word" or @root="heb" or @root="ben") and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+         )"""
+
+#Definitie van modal verb (hoofdzin of bijzin)
+
+#echte modalen:
+mod = """( @pos="verb" and (@root="kan" or @root="moet" or @root="hoef" or @root="mag" or @root="wil" or @root="zal") and (parent::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi")] or parent::node[@rel="vc" and parent::node[(@cat="smain" or @cat="sv1")]] or parent::node[@cat="inf" and parent::node[@cat="ti"]])
+         )"""
+
+#Dit definieert een modaal die niet-hoofd van een cluster is
+modmid ="""( @pos="verb" and (@root="kan" or @root="moet" or @root="hoef" or @root="mag" or @root="wil" or @root="zal") and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+         )"""
+
+#overige
+#mod = """( @pos="verb" and (@root="hoor" or @root="dien" or @root="durf" or @root="weet" or @root="blijf" or @root="ga" or @root="kom" or @root="zie" or @root="voel" or @root="laat" or @root="doe" or @root="sta" or @root="help" or @root="leer" or @root="lig" or @root="zit" or @root="hang" or @root="loop" or @root="poog" or @root="probeer" or @root="tracht" or @root="zoek" or @root="begin") and (parent::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi")] or parent::node[@rel="vc" and parent::node[(@cat="smain" or @cat="sv1")]] or parent::node[@cat="inf" and parent::node[@cat="ti"]])
+#         )"""
+
+#Definitie van main verb (hoofdzin of bijzin)
+#Een verb node die onder een vc, of een conjunctie van vc's hangt, of naast 'laten' hangt (die is speciaal), of onder een soort van subclause
+v = """( @pos="verb" and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+         )"""
+
+vhead = """( @pos="verb" and (parent::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi")] or parent::node[@rel="vc" and parent::node[(@cat="smain" or @cat="sv1")]] or parent::node[@cat="inf" and parent::node[@cat="ti"]])
+         )"""
+
+#Definitie van een subordinate clause
+clause = """( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+         )"""
+
+#Definitie van een main clause
+mainclause = """(@cat="smain" or @cat="sv1"
+         )"""
+
+
+#Checks om te zorgen dat beide werkwoorden van het cluster in dezelfde clause staan
+sameclause = """( $x/ancestor::node[%clause%][1]/%id%=ancestor::node[%clause%][1]/%id% or ($x/ancestor::node[%mainclause%][1]/%id%=ancestor::node[%mainclause%][1]/%id% and not (ancestor::node[%clause%] or $x/ancestor::node[%clause%]))
+         )"""
+sameclause2 = """( $y/ancestor::node[%clause%][1]/%id%=ancestor::node[%clause%][1]/%id% or ($y/ancestor::node[%mainclause%][1]/%id%=ancestor::node[%mainclause%][1]/%id% and not (ancestor::node[%clause%] or $y/ancestor::node[%clause%]))
+         )"""
+sameclause3 = """( $z/ancestor::node[%clause%][1]/%id%=ancestor::node[%clause%][1]/%id% or ($z/ancestor::node[%mainclause%][1]/%id%=ancestor::node[%mainclause%][1]/%id% and not (ancestor::node[%clause%] or $z/ancestor::node[%clause%]))
+         )"""
+sameclausen = """( $n/ancestor::node[%clause%][1]/%id%=ancestor::node[%clause%][1]/%id% or ($n/ancestor::node[%mainclause%][1]/%id%=ancestor::node[%mainclause%][1]/%id% and not (ancestor::node[%clause%] or $n/ancestor::node[%clause%]))
+         )"""
+
+v5_v1_v2_v3_v4 = """(%v% and
+              ( some $x in //node[
+                       %vhead% and
+                       ( some $y in //node[
+                               %v% and
+                               ( some $z in //node[%v% and
+                                       ( some $n in //node[%v%]
+                                         satisfies ((%e%=$n/%b%)
+                                         and %sameclausen%)
+                                         )
+                                       ]
+                                 satisfies ((%e%=$z/%b%)
+                                 and %sameclause3%)
+                                 )
+                               ]
+                         satisfies ((%e%=$y/%b%)
+                         and %sameclause2%)
+                         )
+                       ]
+               satisfies ((%e%=$x/%b%) 
+               and %sameclause%)
+              )
+         )"""
+
+v1_v2_v3_v4_v5 = """(%v% and
+              ( some $x in //node[
+                       %vhead% and
+                       ( some $y in //node[
+                               %v% and
+                               ( some $z in //node[%v% and
+                                       ( some $n in //node[%v%]
+                                         satisfies ((%e%=$n/%b%)
+                                         and %sameclausen%)
+                                         )
+                                       ]
+                                 satisfies ((%e%=$z/%b%)
+                                 and %sameclause3%)
+                                 )
+                               ]
+                         satisfies ((%e%=$y/%b%)
+                         and %sameclause2%)
+                         )
+                       ]
+               satisfies ((%b%=$x/%e%+3) 
+               and %sameclause%)
+              )
+         )"""
+
+v5_v4_v3_v2_v1 = """(%v% and
+              ( some $x in //node[
+                       %v% and
+                       ( some $y in //node[
+                               %v% and
+                               ( some $z in //node[%v% and
+                                       ( some $n in //node[%vhead%]
+                                         satisfies ((%e%=$n/%b%)
+                                         and %sameclausen%)
+                                         )
+                                       ]
+                                 satisfies ((%e%=$z/%b%)
+                                 and %sameclause3%)
+                                 )
+                               ]
+                         satisfies ((%e%=$y/%b%)
+                         and %sameclause2%)
+                         )
+                       ]
+               satisfies ((%e%=$x/%b%) 
+               and %sameclause%)
+              )
+         )"""

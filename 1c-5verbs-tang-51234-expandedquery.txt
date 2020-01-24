@@ -1,0 +1,58 @@
+
+//node[(( @pos="verb" and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+                 ) and
+                     ( some $x in //node[
+                              ( @pos="verb" and (parent::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi")] or parent::node[@rel="vc" and parent::node[(@cat="smain" or @cat="sv1")]] or parent::node[@cat="inf" and parent::node[@cat="ti"]])
+                                       ) and
+                              ( some $y in //node[
+                                      ( @pos="verb" and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+                                               ) and
+                                      ( some $z in //node[( @pos="verb" and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+                                                                   ) and
+                                              ( some $n in //node[( @pos="verb" and ((parent::node[(@rel="vc")]) or (parent::node[(@rel="cnj") and parent::node[(@rel="vc")]]) or (../node[@root="laat" and @pos="verb"]) or (parent::node[(@rel="svp" and @cat="ti")]) or (parent::node[(@rel="body") and parent::node[(@rel="vc")]]))
+                                                                           )]
+                                                satisfies ((number(@end)=$n/number(@begin))
+                                                and ( $n/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                 )][1]/number(@id)=ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                  )][1]/number(@id) or ($n/ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                          )][1]/number(@id)=ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                                                               )][1]/number(@id) and not (ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                             )] or $n/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                                                            )]))
+                                                             ))
+                                                )
+                                              ]
+                                        satisfies ((number(@end)=$z/number(@begin))
+                                        and ( $z/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                         )][1]/number(@id)=ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                          )][1]/number(@id) or ($z/ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                  )][1]/number(@id)=ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                                                       )][1]/number(@id) and not (ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                     )] or $z/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                                                    )]))
+                                                     ))
+                                        )
+                                      ]
+                                satisfies ((number(@end)=$y/number(@begin))
+                                and ( $y/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                 )][1]/number(@id)=ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                  )][1]/number(@id) or ($y/ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                          )][1]/number(@id)=ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                                               )][1]/number(@id) and not (ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                             )] or $y/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                                            )]))
+                                             ))
+                                )
+                              ]
+                      satisfies ((number(@end)=$x/number(@begin))
+                      and ( $x/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                       )][1]/number(@id)=ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                        )][1]/number(@id) or ($x/ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                )][1]/number(@id)=ancestor::node[(@cat="smain" or @cat="sv1"
+                                                                                                                                                                     )][1]/number(@id) and not (ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                   )] or $x/ancestor::node[( @cat="rel" or @cat="ssub" or @cat="oti" or @cat="cp" or @cat="svan" or @cat="ahi"
+                                                                                                                                                                                                                                                  )]))
+                                   ))
+                     )
+                )]
+

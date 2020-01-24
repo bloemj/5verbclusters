@@ -1,0 +1,1 @@
+//node[(@lemma="zullen" and (number(@end)=//node[@lemma="moeten" and (number(@end)=//node[@lemma="kunnen" and (number(@end)=//node[@lemma="worden"]/number(@begin))]/number(@begin))]/number(@begin)))]

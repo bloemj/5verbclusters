@@ -1,0 +1,1 @@
+//node[(@word="zou" and (%e%=//node[@word="moeten" and (%e%=//node[@word="kunnen" and (%e%=//node[@word="worden"]/%b%)]/%b%)]/%b%))]

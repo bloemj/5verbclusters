@@ -1,0 +1,23 @@
+//node[(%v% and
+              ( some $x in //node[
+                       %v% and
+                       ( some $y in //node[
+                               %v% and
+                               ( some $z in //node[%v% and
+                                       ( some $n in //node[%vhead%]
+                                         satisfies ((%e%=$n/%b%)
+                                         and %sameclausen%)
+                                         )
+                                       ]
+                                 satisfies ((%e%=$z/%b%)
+                                 and %sameclause3%)
+                                 )
+                               ]
+                         satisfies ((%e%=$y/%b%)
+                         and %sameclause2%)
+                         )
+                       ]
+               satisfies ((%e%=$x/%b%) 
+               and %sameclause%)
+              )
+)]
