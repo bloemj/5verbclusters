@@ -55,7 +55,7 @@ Volledige query: [1-5verbspos-vvvvv-query.txt](1-5verbspos-vvvvv-query.txt)
 
 #### Krantencorpus Lassy Groot:  
 [Resultaten uit DACT](dact-krant-5verbspos-query1.csv)  
-[Resultaten uit PaQu](paqu-krant-5verbspos-query1.txt)  
+[Resultaten uit PaQu](paqu-kranten-5verbspos-query1.txt)  
 [Zoeken met PaQu](https://paqu.let.rug.nl:8068/xpath?db=lassynewspapers&xpath=%2F%2Fnode%5B%28%40pos%3D%22verb%22+and+%28number%28%40end%29%3D%2F%2Fnode%5B%40pos%3D%22verb%22+and+%28number%28%40end%29%3D%2F%2Fnode%5B%40pos%3D%22verb%22+and+%28number%28%40end%29%3D%2F%2Fnode%5B%40pos%3D%22verb%22+and+%28number%28%40end%29%3D%2F%2Fnode%5B%40pos%3D%22verb%22%5D%2Fnumber%28%40begin%29%29%5D%2Fnumber%28%40begin%29%29%5D%2Fnumber%28%40begin%29%29%5D%2Fnumber%28%40begin%29%29%29%5D&mt=std&xn=100)
 
 ## Zoeken naar specifieke gevallen
