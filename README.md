@@ -7,6 +7,8 @@ De volledige queries zijn te lang om direct in PaQu te plakken, dus daarom hiero
 
 [Overzicht van alle gevonden vijfledige werkwoordsclusters, met annotaties](dact-allcorrect-syntactic.csv)
 
+De resultaten die gebruikt zijn voor tabel 2 (queryfout) staan in de map tabel2. 
+
 ## Syntactisch zoeken
 
 ### 5-1-2-3-4-clusters
