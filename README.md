@@ -1,5 +1,5 @@
 # 5verbclusters
-Dit is de repository die hoort bij het paper "Een corpus waar alle constructies in gevonden zouden moeten kunnen worden?". Hier zijn de XPath-queries en de zoekresultaten te vinden.
+Dit is de repository die hoort bij het paper "Een corpus waar alle constructies in gevonden zouden moeten kunnen worden?". Hier zijn de XPath-queries en de zoekresultaten te vinden die gebruikt zijn in het paper.
 
 De volledige queries zijn te lang om direct in PaQu te plakken, dus daarom hieronder zowel de volledige query als een versie met macro's. Om in PaQu te zoeken moet u eerst [inloggen](https://www.let.rug.nl/~kleiweg/paqulogin/) en het bestand met macro's uploaden, waarna de verkorte query kan worden uitgevoerd.
 
